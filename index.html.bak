@@ -20,24 +20,24 @@
     
 
     
-        <link rel="alternate" href="/" title="Hexo" type="application/atom+xml" />
+        <link rel="alternate" href="" title="Hexo" type="application/atom+xml" />
     
 
     
 
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="libs/titillium-web/styles.css">
-    <link rel="stylesheet" href="libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <script src="libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="libs/lightgallery/css/lightgallery.min.css">
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="libs/justified-gallery/justifiedGallery.min.css">
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
     
     
     
