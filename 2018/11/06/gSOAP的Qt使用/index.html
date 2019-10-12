@@ -21,7 +21,7 @@
 <meta property="og:description" content="gSOAP的Qt使用版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2018/11/06/gSOAP的Qt使用 本次说明主要针对gSOAP的使用，其中涉及的gSOAP的源码请自行下载，本次测试使用的是目前最新版:gsoap_2.8.73 假设本次WebService的地址(EndPoint)为:http://xxxxx:xxxx/xxxx.asmx先找到W">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:/2018/11/06/gSOAP的Qt使用/gsoap.png">
-<meta property="og:updated_time" content="2018-12-06T08:15:44.432Z">
+<meta property="og:updated_time" content="2019-06-25T08:43:54.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gSOAP的Qt使用">
 <meta name="twitter:description" content="gSOAP的Qt使用版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2018/11/06/gSOAP的Qt使用 本次说明主要针对gSOAP的使用，其中涉及的gSOAP的源码请自行下载，本次测试使用的是目前最新版:gsoap_2.8.73 假设本次WebService的地址(EndPoint)为:http://xxxxx:xxxx/xxxx.asmx先找到W">
@@ -186,7 +186,7 @@
 <p>此次我们以其中的manEntrance接口来进行测试</p>
 <p>#下面是gSOAP的代码使用</p>
 <p>##1准备工作<br>由于gSOAP压缩包中的gsoap/bin目录下只提供了macosx以及win32的应用工具，因此此次我们以Windows生成方法为主，生成后的文件是跟平台无关的，都可以使用<br>其次是git bash工具的安装，因为在Windows上需要执行相关命令操作，这个还是比较方便，如果windows命令行比较熟悉的话，完全不需要安装</p>
-<p>##2gSOAP文件生成<br>在解压目录的gsoap\bin\win32\下执行如下指令：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2h -s -o TestSOAP.h http:<span class="comment">//xxxxx:xxxx/xxxx.asmx?WSDL</span></span><br></pre></td></tr></table></figure><br>生成 TestSOAP.h 文件<br>继续执行(我的解压目录为F盘根目录)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">soapcpp2 -CLx -IF:\gsoap<span class="number">-2.8</span>\gsoap\<span class="keyword">import</span><span class="string">" TestSOAP.h</span></span><br></pre></td></tr></table></figure><br>这样就生成了我们需要的所有文件，然后在执行目录文件夹下以及F:\gsoap-2.8\gsoap\import文件夹下分别找到如下文件并拷贝到自己的工程文件夹下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">soapC.cpp</span><br><span class="line">soapClient.cpp</span><br><span class="line">soapH.h</span><br><span class="line">soapStub.h</span><br><span class="line">stdsoap2.cpp</span><br><span class="line">stdsoap2.h</span><br><span class="line">xxxxxxxxxxxxxxx.nsmap</span><br></pre></td></tr></table></figure></p>
+<p>##2gSOAP文件生成<br>在解压目录的gsoap\bin\win32\下执行如下指令：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsdl2h -s -o TestSOAP.h http:<span class="comment">//xxxxx:xxxx/xxxx.asmx?WSDL</span></span><br></pre></td></tr></table></figure><br>生成 TestSOAP.h 文件<br>继续执行(我的解压目录为F盘根目录)<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">soapcpp2 -CLx -IF:\gsoap<span class="number">-2.8</span>\gsoap\<span class="keyword">import</span> TestSOAP.h</span><br></pre></td></tr></table></figure><br>这样就生成了我们需要的所有文件，然后在执行目录文件夹下以及F:\gsoap-2.8\gsoap\import文件夹下分别找到如下文件并拷贝到自己的工程文件夹下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">soapC.cpp</span><br><span class="line">soapClient.cpp</span><br><span class="line">soapH.h</span><br><span class="line">soapStub.h</span><br><span class="line">stdsoap2.cpp</span><br><span class="line">stdsoap2.h</span><br><span class="line">xxxxxxxxxxxxxxx.nsmap</span><br></pre></td></tr></table></figure></p>
 <p>##3测试代码<br>在工程中添加:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"soapC.cpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"soapClient.cpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdsoap2.cpp"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"xxxxxxxxxxxxxxx.nsmap"</span></span></span><br></pre></td></tr></table></figure><br>客户端调用如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化SOAP</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">soap</span> _<span class="title">soap</span>;</span></span><br><span class="line">soap_init(&amp;_soap);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> result = <span class="number">0</span>;			<span class="comment">//SOAP返回值</span></span><br><span class="line">QString errStr = <span class="string">""</span>;	<span class="comment">//出错提示</span></span><br><span class="line">QString strRes = <span class="string">""</span>;	<span class="comment">//结果字符串</span></span><br><span class="line">QString msg = <span class="string">"xxx"</span>;	<span class="comment">//函数调用参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//WebService地址</span></span><br><span class="line">QString sUrl= <span class="string">"http://xxxxx:xxxx/xxxx.asmx"</span>;	</span><br><span class="line"></span><br><span class="line"><span class="comment">//request和response</span></span><br><span class="line">_ns1__mainEntrance req;</span><br><span class="line">_ns1__mainEntranceResponse res;</span><br><span class="line"></span><br><span class="line"><span class="comment">//QString 需要转为 char*</span></span><br><span class="line">QByteArray ba = msg.toLatin1();</span><br><span class="line">req.in0 = ba.data();</span><br><span class="line"></span><br><span class="line">QByteArray cUrl = sUrl.toLatin1();</span><br><span class="line">soap_call___ns1__mainEntrance(&amp;_soap,cUrl.data(),<span class="string">""</span>,&amp;req,res);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(_soap.error!=<span class="number">0</span>)&#123;</span><br><span class="line">    errStr = QString::fromLocal8Bit(*soap_faultstring(&amp;_soap));</span><br><span class="line">    result = _soap.error;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    strRes = QString::fromUtf8(res.out);</span><br><span class="line">&#125;</span><br><span class="line">soap_end(&amp;_soap);</span><br><span class="line">soap_done(&amp;_soap);</span><br><span class="line"></span><br><span class="line"><span class="comment">//打印调用结果信息</span></span><br><span class="line">qDebug()&lt;&lt;strRes&lt;&lt;result&lt;&lt;errStr;</span><br></pre></td></tr></table></figure></p>
 <p>#后记<br>WebService发送会阻塞等待，需要创建单独线程执行<br>一般情况下我们需要发送xml文件，并接收一个xml文件解析，以下说明xml文件的Qt操作(使用Dom方式)</p>
 <p>##1xml文件生成<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QDomElement&gt;</span></span></span><br><span class="line">QDomDocument xmldoc;</span><br><span class="line">QDomNode instruction = xmldoc.createProcessingInstruction(<span class="string">"xml"</span>,<span class="string">"version=\"1.0\" encoding=\"UTF-8\""</span>);</span><br><span class="line">xmldoc.appendChild(instruction);</span><br><span class="line">QDomElement root = xmldoc.createElement(<span class="string">"order"</span>);</span><br><span class="line">xmldoc.appendChild(root);</span><br><span class="line">QDomElement ser = xmldoc.createElement(<span class="string">"serviceCode"</span>);</span><br><span class="line">root.appendChild(ser);</span><br><span class="line">QDomText sertext = xmldoc.createTextNode(<span class="string">"insep"</span>);</span><br><span class="line">ser.appendChild(sertext);</span><br></pre></td></tr></table></figure><br>生成文件如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;order&gt;</span><br><span class="line">    &lt;serviceCode&gt;insep&lt;/serviceCode&gt;</span><br><span class="line">&lt;/order&gt;</span><br></pre></td></tr></table></figure></p>
@@ -349,6 +349,26 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2019/10/12/Debian系下项目打包/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Kong/">Kong</a></p>
+                            <p class="item-title"><a href="/2019/10/12/Debian系下项目打包/" class="title">Debian系下项目打包</a></p>
+                            <p class="item-date"><time datetime="2019-10-12T03:00:00.000Z" itemprop="datePublished">2019-10-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2019/05/07/Ubuntu桌面快捷方式的创建/" class="thumbnail">
     
     
@@ -426,26 +446,6 @@
                         </div>
                     </li>
                 
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/10/07/布尔津-喀纳斯/" class="thumbnail">
-    
-    
-        <span style="background-image:url(/2018/10/07/布尔津-喀纳斯/1.jpg)" alt="布尔津-喀纳斯" class="thumbnail-image"></span>
-    
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/C-c/">C c</a></p>
-                            <p class="item-title"><a href="/2018/10/07/布尔津-喀纳斯/" class="title">布尔津-喀纳斯</a></p>
-                            <p class="item-date"><time datetime="2018-10-07T03:38:20.000Z" itemprop="datePublished">2018-10-07</time></p>
-                        </div>
-                    </li>
-                
             </ul>
         </div>
     </div>
@@ -455,7 +455,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-c/">C c</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kong/">Kong</a><span class="category-list-count">4</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-c/">C c</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kong/">Kong</a><span class="category-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -465,7 +465,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -475,7 +475,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PDF打印/">PDF打印</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移植/">移植</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Debian/">Debian</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PDF打印/">PDF打印</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/">Qt</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/">Ubuntu</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打包/">打包</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技巧/">技巧</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/旅游/">旅游</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移植/">移植</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -485,7 +485,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/PDF打印/" style="font-size: 10px;">PDF打印</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/旅游/" style="font-size: 20px;">旅游</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/移植/" style="font-size: 10px;">移植</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+            <a href="/tags/Debian/" style="font-size: 10px;">Debian</a> <a href="/tags/PDF打印/" style="font-size: 10px;">PDF打印</a> <a href="/tags/Qt/" style="font-size: 15px;">Qt</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/打包/" style="font-size: 10px;">打包</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/旅游/" style="font-size: 20px;">旅游</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a> <a href="/tags/移植/" style="font-size: 10px;">移植</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
         </div>
     </div>
 
