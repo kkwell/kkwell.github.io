@@ -12,19 +12,19 @@
     
         <meta name="keywords" content="Debian,打包" />
     
-    <meta name="description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 　　1）创建一个空目录　　在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work">
+    <meta name="description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 1）创建一个空目录在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work 2）指定">
 <meta name="keywords" content="Debian,打包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Debian系下项目打包">
 <meta property="og:url" content="https:kkwell.github.io/2019/10/12/Debian系下项目打包/index.html">
 <meta property="og:site_name" content="Kvell">
-<meta property="og:description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 　　1）创建一个空目录　　在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work">
+<meta property="og:description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 1）创建一个空目录在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work 2）指定">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:/2019/10/12/Debian系下项目打包/Debian.png">
-<meta property="og:updated_time" content="2019-10-30T02:04:18.024Z">
+<meta property="og:updated_time" content="2019-10-31T05:53:34.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Debian系下项目打包">
-<meta name="twitter:description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 　　1）创建一个空目录　　在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work">
+<meta name="twitter:description" content="Debian系下项目打包版权声明：本文为原创文章，未经允许不得转载! @Kongkkwell.github.io/2019/10/12/Debian系下项目打包 ##1.将源文件编译debian打包只是打包，不提供编译功能，所以还需要自己编译。 ##2.整理打包所需文件 1）创建一个空目录在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work 2）指定">
 <meta name="twitter:image" content="https:/2019/10/12/Debian系下项目打包/Debian.png">
     
 
@@ -183,14 +183,20 @@
 <footer><strong>@Kong</strong><cite><a href="https://kkwell.github.io/2019/10/12/Debian系下项目打包" target="_blank" rel="noopener">kkwell.github.io/2019/10/12/Debian系下项目打包</a></cite></footer></blockquote>
 <p>##1.将源文件编译<br>debian打包只是打包，不提供编译功能，所以还需要自己编译。</p>
 <p>##2.整理打包所需文件</p>
-<p>　　1）创建一个空目录<br>　　在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work</p>
-<p>　　2）指定安装路径<br>　　然后将需要打包的文件复制到该目录下，这里有很重要的一点，work这个目录就是一个”假根目录”，您在这个目录下所有的修改，最后都会被映射到目标机的根目录 / 下,比如说在该目录下（/home/gk/work）建立了一个usr/bin这样的目录，然后将我项目中的可执行文件放到usr/bin目录下(/home/gk/work/usr/bin/xxx)，当打完包安装的时候，这个可执行文件就会被安装到/usr/bin目录下(注意，这里是绝对路径)，同理，想让库文件安装到/usr/lib目录下，就得在当前目录（/home/gk/work）下建立usr/lib目录，然后将库文件放到其下（/home/gk/work/usr/lib/xxx）。</p>
-<p>　　3）配置文件<br>　　在work目录下建立一个名为DEBIAN的目录，在其下有两个文件，一个是control，另一个是md5sums,前一个是必须的，其中主要包含软件基本信息和维护者信息，后者是软件的md5校验值，可以有可以没有。</p>
+<p>1）创建一个空目录<br>在某目录下，例如我是在/home/gk/下建立一个目录work，现在目录为/home/gk/work</p>
+<p>2）指定安装路径<br>然后将需要打包的文件复制到该目录下，这里有很重要的一点，work这个目录就是一个”假根目录”，您在这个目录下所有的修改，最后都会被映射到目标机的根目录 / 下,比如说在该目录下（/home/gk/work）建立了一个usr/bin这样的目录，然后将我项目中的可执行文件放到usr/bin目录下(/home/gk/work/usr/bin/xxx)，当打完包安装的时候，这个可执行文件就会被安装到/usr/bin目录下(注意，这里是绝对路径)，同理，想让库文件安装到/usr/lib目录下，就得在当前目录（/home/gk/work）下建立usr/lib目录，然后将库文件放到其下（/home/gk/work/usr/lib/xxx）。</p>
+<p>3）配置文件<br>在work目录下建立一个名为DEBIAN的目录，在其下有两个文件，一个是control，另一个是md5sums,前一个是必须的，其中主要包含软件基本信息和维护者信息，后者是软件的md5校验值，可以有可以没有。</p>
 <p>##3.其它文件说明<br>除了有control和md5sums文件外，还可以有还可能有preinst(preinstallation)（安装之前执行脚本）、postinst(postinstallation)（安装之后执行的脚本）、prerm(preremove)（卸载之前执行脚本）、postrm(postremove)（卸载之后执行的脚本）、copyright (版权）、changlog （修订记录）和conffiles等文件。</p>
-<p>　　创建control命令：gedit DEBIAN/control，其中配置文件的内容比较简单不再解释。</p>
-<p>　　生成md5sums:   md5sum . &gt; /home/gk/work/DEBIAN/md5sums　　#生成当前目录下所有文件的md5校验值,因为md5sum不能递归生成文件md5值，所以暂时只能挨个目录生成</p>
-<p>##4.打包<br>　　命令：   dpkg -b /home/gk/work /home/gk/xxx.deb　　#将work目录下的内容打包到/home/gk下,xxx.deb为打包出来的deb文件。</p>
-<p>##5.安装卸载<br>　　安装： dpkg -i xxx.deb<br>　　卸载： dpkg -r xxx</p>
+<p>1）control: 这个文件主要描述软件包的名称（Package），版本（Version）以及描述（Description）等，是deb包必须具备的描述性文件，以便于软件的安装管理和索引。同时为了能将软件包进行充分的管理，可能还具有以下字段: </p>
+<p>Section: 这个字段申明软件的类别，常见的有utils,net, mail,text, x11 等；<br>Priority: 这个字段申明软件对于系统的重要程度，如required,standard, optional,extra 等；<br>Essential: 这个字段申明是否是系统最基本的软件包（选项为yes/no），如果是的话，这就表明该软件是维持系统稳定和正常运行的软件包，不允许任何形式的卸载（除非进行强制性的卸载）<br>Architecture:申明软件包结构，如基于i386,amd64,m68k,sparc,alpha,powerpc 等；<br>Source: 软件包的源代码名称；<br>Depends: 软件所依赖的其他软件包和库文件。如果是依赖多个软件包和库文件，彼此之间采用逗号隔开；<br>Pre-Depends: 软件安装前必须安装、配置依赖性的软件包和库文件，它常常用于必须的预运行脚本需求；<br>Recommends: 这个字段表明推荐的安装的其他软件包和库文件；<br>Suggests: 建议安装的其他软件包和库文件。<br>示例如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Package: SGAS</span><br><span class="line">Version: <span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">Section: utils</span><br><span class="line">Priority: optional</span><br><span class="line">Depends: xviewg (&gt;= <span class="number">3.2</span>p1<span class="number">.4</span>), xfig (&gt;= <span class="number">1</span>:<span class="number">3</span>), libstdc++<span class="number">2.10</span>-glibc2<span class="number">.2</span></span><br><span class="line">Suggests: fig2ps</span><br><span class="line">Architecture: i386</span><br><span class="line">Installed-Size: <span class="number">512</span></span><br><span class="line">Maintainer: kong&lt;kong_w@foxmail.com&gt;</span><br><span class="line">Provides: SGAS</span><br><span class="line">Description: Electricity Payment.</span><br></pre></td></tr></table></figure></p>
+<p>2）preinst: 在Deb包文件解包之前，将会运行该脚本。许多“preinst”脚本的任务是停止作用于待升级软件包的服务，直到软件包安装或升级完成。示例如下:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">!/bin/sh</span><br><span class="line">echo “my deb” &gt; /root/mydeb.<span class="built_in">log</span></span><br><span class="line">rm -rf /root/mydeb.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
+<p>3）postinst该脚本的主要任务是完成安装包时的配置工作。许多“postinst”脚本负责执行有关命令为新安装或升级的软件重启服务。</p>
+<p>4）prerm该脚本负责停止与软件包相关联的daemon服务。它在删除软件包关联文件之前执行。</p>
+<p>5）postrm该脚本负责修改软件包链接或文件关联，或删除由它创建的文件。</p>
+<p>6）生成md5sums: md5sum . &gt; /home/gk/work/DEBIAN/md5sums　　#生成当前目录下所有文件的md5校验值,因为md5sum不能递归生成文件md5值，所以暂时只能挨个目录生成</p>
+<p>如果DEBIAN目录中含有postinst 、prerm等执行文件，需要增加执行权限:<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R <span class="number">755</span> DEBIAN</span><br></pre></td></tr></table></figure></p>
+<p>##4.打包<br>命令： dpkg -b /home/gk/work /home/gk/xxx.deb　　#将work目录下的内容打包到/home/gk下,xxx.deb为打包出来的deb文件。</p>
+<p>##5.相关指令<br>安装：dpkg -i xxx.deb<br>卸载：dpkg -r xxx<br>查看deb包是否安装：dpkg -s xxx<br>查看deb包文件内容：dpkg -c xxx.deb<br>查看当前目录某个deb包的信息：dpkg –info xxx.deb<br>解压deb包中所要安装的文件：dpkg -x xxx.deb file<br>解压deb包中DEBIAN目录下的文件（至少包含control文件）:<br>dpkg -e xxx.deb file/DEBIAN</p>
 <p>至此，DEBIAN系下的ubuntu打包完毕</p>
 <img src="/2019/10/12/Debian系下项目打包/Debian.png" title="接口描述">
 
@@ -200,7 +206,7 @@
 
 
 
-    <a data-url="https:kkwell.github.io/2019/10/12/Debian系下项目打包/" data-id="ck2cqc6o60000ugc7dr8164aj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="https:kkwell.github.io/2019/10/12/Debian系下项目打包/" data-id="ck2eanqua0000tkc7imz2npq8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
