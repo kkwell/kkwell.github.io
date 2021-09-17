@@ -16,7 +16,6 @@ jobs:
           source-repo: https://github.com/kkwell/kkwell.github.io.git
           # 注意替换为你的 Gitee 目标仓库地址
           destination-repo: https://gitee.com/kvell/kkwell.github.io.git
-
       - name: Build Gitee Pages
         uses: yanglbme/gitee-pages-action@main
         with:
